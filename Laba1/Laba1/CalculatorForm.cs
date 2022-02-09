@@ -9,73 +9,135 @@ namespace Laba1
         {
             InitializeComponent();
         }
+        
+        private void textBoxNumbersOnly_KeyPress(object sender, KeyPressEventArgs e)
+        {   
+            char currentSymbol = e.KeyChar;
 
-        private void buttonSave_Click(object sender, EventArgs e)
-        {
-            textBoxMemory.Text = textBoxResult.Text;
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string sign = (sender as ComboBox).Text;
-            textBoxOperationSign.Text = sign;
-        }
-
-        private void buttonClear_Click(object sender, EventArgs e)
-        {
-            textBoxEquals.Text = "";
-            textBoxMemory.Text = "";
-            textBoxResult.Text = "";
-            textBoxFirstValue.Text = "";
-            textBoxSecondValue.Text = "";
-            textBoxOperationSign.Text = "";
-            comboBox1.Text = "";
-        }
-
-        private void buttonEquals_Click(object sender, EventArgs e)
-        {
-            if (textBoxFirstValue.Text != "" && textBoxSecondValue.Text != "" && textBoxOperationSign.Text != "")
+            if (char.IsDigit(currentSymbol) == false && (int)currentSymbol!=8 )
             {
-                textBoxEquals.Text = "=";
-
-                int firstValue;
-                int secondValue;
-                if (int.TryParse(textBoxFirstValue.Text, out firstValue) == false ||
-                    int.TryParse(textBoxSecondValue.Text, out secondValue) == false)
-                    return;
-                
-                char sign = textBoxOperationSign.Text[0];
-                var result = 0;
-                
+                e.Handled = true;
+            }
+        }
+        
+        private void UsersInputsChanged(object sender, EventArgs e)
+        {
+            if (textBoxAge.Text != "" && textBoxHeight.Text != "" && textBoxWeight.Text != "" && comboBoxStyles.SelectedItem.ToString() != "")
+            {
                 try
                 {
-                    switch (sign)
+                    int age = int.Parse(textBoxAge.Text);
+                    int height = int.Parse(textBoxHeight.Text);
+                    int weight = int.Parse(textBoxWeight.Text);
+                    var style = comboBoxStyles.SelectedItem.ToString();
+                    int stylenumber = 1;
+                    switch (style)
                     {
-                        case '+':
-                            result = checked(firstValue + secondValue);
+                        case "Мужской":
+                            stylenumber = 1;
                             break;
-                        case '-':
-                            result = checked(firstValue - secondValue);
+                        case "Женский":
+                            stylenumber = 2;
                             break;
-                        case '*':
-                            result = checked(firstValue * secondValue);
+                        case "Вертолёт":
+                            stylenumber = 3;
                             break;
-                        case '/':
-                            result = checked (firstValue / secondValue);
+                    }
+
+                    int result = checked(age + height + (weight / stylenumber));
+                    switch (result % 10)
+                    {
+                        case 0:
+                            textBoxDiagnoz.Text = "Идеальный";
                             break;
-                        case '^':
-                            result = checked((int)Math.Pow(firstValue, secondValue));
+                        case 6:
+                            textBoxDiagnoz.Text = "Ожирение";
+                            break;
+                        case 9:
+                            textBoxDiagnoz.Text = "Наташа";
+                            break;
+                        default:
+                            textBoxDiagnoz.Text = "Почти ожирение";
                             break;
                     }
                 }
-                catch (OverflowException)
+                catch (Exception)
                 {
-                    textBoxResult.Text = "Overflow";
-                    return;
+                    MessageBox.Show("Числа больно велики");
                 }
+                
 
-                textBoxResult.Text = result.ToString();
+
             }
+        }
+
+        private void HiddenInputsChanged(object sender, EventArgs e)
+        {
+            if (textBoxAge.Text == "" || textBoxHeight.Text == "" || textBoxWeight.Text == "" || comboBoxStyles.SelectedItem.ToString() == "") return;
+            if (textBoxHiddenTime.Text == "" || textBoxHiddenWeight.Text == "") return;
+            
+            try
+            {
+                int age = int.Parse(textBoxAge.Text);
+                int height = int.Parse(textBoxHeight.Text);
+                int weight = int.Parse(textBoxWeight.Text);
+                var style = comboBoxStyles.SelectedItem.ToString();
+                
+               
+                var comboBoxTargetsText = comboBoxTargets.Text;
+                if(comboBoxTargetsText == "Поддержание веса")
+                {
+                    textBoxNorma.Text = new Random().Next(1, 100000).ToString();
+                }
+                else{
+                    int HiddenTime = int.Parse(textBoxHiddenTime.Text);
+                    int HiddenWeight = int.Parse(textBoxHiddenWeight.Text);
+
+                    if (comboBoxTargetsText == "Увеличение веса")
+                    {
+                        if (HiddenWeight <= weight)
+                            throw new ApplicationException();
+                        textBoxNorma.Text = checked((new Random().Next(1, 1000) + (HiddenWeight - weight)) / HiddenTime).ToString();
+                    }
+                    else
+                    {
+                        if (HiddenWeight >= weight)
+                            throw new ApplicationException();
+                        textBoxNorma.Text = checked((new Random().Next(1, 1000) + (weight - HiddenWeight)) / HiddenTime).ToString();
+                    }
+                }
+            }
+            catch (ApplicationException)
+            {
+                MessageBox.Show("Желаемый вес не соотносится с целью");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Числа больно велики");
+            }
+        }
+        
+        private void comboBoxTargets_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            var targetText = (sender as ComboBox).Text;
+            HiddenInputsChanged(null,null);
+            if (targetText == "Поддержание веса")
+            {
+                if (labelHiddenTime.Visible == false) return;
+                labelHiddenTime.Visible = false;
+                labelHiddenWeight.Visible = false;
+                textBoxHiddenTime.Visible = false;
+                textBoxHiddenWeight.Visible = false;
+            }
+            else
+            {
+                if (labelHiddenTime.Visible == true) return;
+                labelHiddenTime.Visible = true;
+                labelHiddenWeight.Visible = true;
+                textBoxHiddenTime.Visible = true;
+                textBoxHiddenWeight.Visible = true;
+            }
+            
         }
     }
 }

@@ -29,164 +29,199 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBoxSecondValue = new System.Windows.Forms.TextBox();
-            this.textBoxOperationSign = new System.Windows.Forms.TextBox();
-            this.textBoxEquals = new System.Windows.Forms.TextBox();
-            this.textBoxResult = new System.Windows.Forms.TextBox();
-            this.textBoxFirstValue = new System.Windows.Forms.TextBox();
-            this.textBoxMemory = new System.Windows.Forms.TextBox();
+            this.textBoxHeight = new System.Windows.Forms.TextBox();
+            this.textBoxAge = new System.Windows.Forms.TextBox();
+            this.textBoxWeight = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.buttonEquals = new System.Windows.Forms.Button();
-            this.buttonSave = new System.Windows.Forms.Button();
-            this.buttonClear = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBoxHiddenWeight = new System.Windows.Forms.TextBox();
+            this.labelHiddenWeight = new System.Windows.Forms.Label();
+            this.labelHiddenTime = new System.Windows.Forms.Label();
+            this.textBoxHiddenTime = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBoxNorma = new System.Windows.Forms.TextBox();
+            this.comboBoxStyles = new System.Windows.Forms.ComboBox();
+            this.textBoxDiagnoz = new System.Windows.Forms.TextBox();
+            this.comboBoxTargets = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
-            // textBoxSecondValue
+            // textBoxHeight
             // 
-            this.textBoxSecondValue.Location = new System.Drawing.Point(242, 108);
-            this.textBoxSecondValue.Name = "textBoxSecondValue";
-            this.textBoxSecondValue.Size = new System.Drawing.Size(160, 22);
-            this.textBoxSecondValue.TabIndex = 1;
+            this.textBoxHeight.Location = new System.Drawing.Point(38, 139);
+            this.textBoxHeight.Name = "textBoxHeight";
+            this.textBoxHeight.Size = new System.Drawing.Size(187, 22);
+            this.textBoxHeight.TabIndex = 1;
+            this.textBoxHeight.TextChanged += new System.EventHandler(this.UsersInputsChanged);
+            this.textBoxHeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNumbersOnly_KeyPress);
             // 
-            // textBoxOperationSign
+            // textBoxAge
             // 
-            this.textBoxOperationSign.BackColor = System.Drawing.Color.Pink;
-            this.textBoxOperationSign.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxOperationSign.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxOperationSign.Location = new System.Drawing.Point(209, 108);
-            this.textBoxOperationSign.Name = "textBoxOperationSign";
-            this.textBoxOperationSign.Size = new System.Drawing.Size(27, 23);
-            this.textBoxOperationSign.TabIndex = 4;
-            this.textBoxOperationSign.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxAge.Location = new System.Drawing.Point(38, 289);
+            this.textBoxAge.Name = "textBoxAge";
+            this.textBoxAge.Size = new System.Drawing.Size(187, 22);
+            this.textBoxAge.TabIndex = 6;
+            this.textBoxAge.TextChanged += new System.EventHandler(this.UsersInputsChanged);
+            this.textBoxAge.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNumbersOnly_KeyPress);
             // 
-            // textBoxEquals
+            // textBoxWeight
             // 
-            this.textBoxEquals.BackColor = System.Drawing.Color.Pink;
-            this.textBoxEquals.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxEquals.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxEquals.Location = new System.Drawing.Point(408, 104);
-            this.textBoxEquals.Name = "textBoxEquals";
-            this.textBoxEquals.Size = new System.Drawing.Size(27, 23);
-            this.textBoxEquals.TabIndex = 5;
-            this.textBoxEquals.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBoxResult
-            // 
-            this.textBoxResult.Location = new System.Drawing.Point(441, 108);
-            this.textBoxResult.Name = "textBoxResult";
-            this.textBoxResult.Size = new System.Drawing.Size(160, 22);
-            this.textBoxResult.TabIndex = 6;
-            // 
-            // textBoxFirstValue
-            // 
-            this.textBoxFirstValue.Location = new System.Drawing.Point(43, 108);
-            this.textBoxFirstValue.Name = "textBoxFirstValue";
-            this.textBoxFirstValue.Size = new System.Drawing.Size(160, 22);
-            this.textBoxFirstValue.TabIndex = 7;
-            // 
-            // textBoxMemory
-            // 
-            this.textBoxMemory.Location = new System.Drawing.Point(441, 54);
-            this.textBoxMemory.Name = "textBoxMemory";
-            this.textBoxMemory.Size = new System.Drawing.Size(160, 22);
-            this.textBoxMemory.TabIndex = 8;
+            this.textBoxWeight.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.textBoxWeight.Location = new System.Drawing.Point(38, 62);
+            this.textBoxWeight.Name = "textBoxWeight";
+            this.textBoxWeight.Size = new System.Drawing.Size(187, 22);
+            this.textBoxWeight.TabIndex = 7;
+            this.textBoxWeight.TextChanged += new System.EventHandler(this.UsersInputsChanged);
+            this.textBoxWeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNumbersOnly_KeyPress);
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("JetBrains Mono Medium", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(242, 82);
+            this.label1.Location = new System.Drawing.Point(38, 113);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(160, 23);
+            this.label1.Size = new System.Drawing.Size(206, 23);
             this.label1.TabIndex = 9;
-            this.label1.Text = "Second Value";
+            this.label1.Text = "Введите рост (км)";
             // 
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("JetBrains Mono Medium", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(43, 82);
+            this.label2.Location = new System.Drawing.Point(38, 36);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(160, 23);
+            this.label2.Size = new System.Drawing.Size(180, 23);
             this.label2.TabIndex = 10;
-            this.label2.Text = "First Value";
+            this.label2.Text = "Введите вес(т)\r\n";
             // 
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("JetBrains Mono Medium", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(441, 82);
+            this.label3.Location = new System.Drawing.Point(38, 263);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(160, 23);
+            this.label3.Size = new System.Drawing.Size(272, 23);
             this.label3.TabIndex = 11;
-            this.label3.Text = "Result";
-            // 
-            // label4
-            // 
-            this.label4.Font = new System.Drawing.Font("JetBrains Mono Medium", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(441, 28);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(160, 23);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Memory";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] { "+", "-", "*", "/", "^" });
-            this.comboBox1.Location = new System.Drawing.Point(43, 198);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(160, 39);
-            this.comboBox1.TabIndex = 14;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.label3.Text = "Введите возраст(век)";
             // 
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("JetBrains Mono Medium", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(43, 172);
+            this.label5.Location = new System.Drawing.Point(38, 193);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(160, 23);
+            this.label5.Size = new System.Drawing.Size(202, 23);
             this.label5.TabIndex = 15;
-            this.label5.Text = "Sign Choise\r\n";
+            this.label5.Text = "Выберите стиль";
             // 
-            // buttonEquals
+            // label6
             // 
-            this.buttonEquals.BackColor = System.Drawing.Color.White;
-            this.buttonEquals.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonEquals.Location = new System.Drawing.Point(242, 198);
-            this.buttonEquals.Name = "buttonEquals";
-            this.buttonEquals.Size = new System.Drawing.Size(162, 39);
-            this.buttonEquals.TabIndex = 16;
-            this.buttonEquals.Text = "=\r\n";
-            this.buttonEquals.UseVisualStyleBackColor = false;
-            this.buttonEquals.Click += new System.EventHandler(this.buttonEquals_Click);
+            this.label6.Font = new System.Drawing.Font("JetBrains Mono Medium", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.Location = new System.Drawing.Point(38, 348);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(169, 23);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "Выберите цель\r\n";
             // 
-            // buttonSave
+            // textBoxHiddenWeight
             // 
-            this.buttonSave.BackColor = System.Drawing.Color.White;
-            this.buttonSave.Font = new System.Drawing.Font("JetBrains Mono Medium", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.buttonSave.Location = new System.Drawing.Point(441, 198);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(162, 39);
-            this.buttonSave.TabIndex = 17;
-            this.buttonSave.Text = "Save";
-            this.buttonSave.UseVisualStyleBackColor = false;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            this.textBoxHiddenWeight.Location = new System.Drawing.Point(242, 347);
+            this.textBoxHiddenWeight.Name = "textBoxHiddenWeight";
+            this.textBoxHiddenWeight.Size = new System.Drawing.Size(159, 22);
+            this.textBoxHiddenWeight.TabIndex = 21;
+            this.textBoxHiddenWeight.Visible = false;
+            this.textBoxHiddenWeight.TextChanged += new System.EventHandler(this.HiddenInputsChanged);
+            this.textBoxHiddenWeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNumbersOnly_KeyPress);
             // 
-            // buttonClear
+            // labelHiddenWeight
             // 
-            this.buttonClear.BackColor = System.Drawing.Color.White;
-            this.buttonClear.Font = new System.Drawing.Font("JetBrains Mono Medium", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.buttonClear.Location = new System.Drawing.Point(242, 271);
-            this.buttonClear.Name = "buttonClear";
-            this.buttonClear.Size = new System.Drawing.Size(162, 39);
-            this.buttonClear.TabIndex = 18;
-            this.buttonClear.Text = "Clear";
-            this.buttonClear.UseVisualStyleBackColor = false;
-            this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
+            this.labelHiddenWeight.Font = new System.Drawing.Font("JetBrains Mono Medium", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelHiddenWeight.Location = new System.Drawing.Point(233, 319);
+            this.labelHiddenWeight.Name = "labelHiddenWeight";
+            this.labelHiddenWeight.Size = new System.Drawing.Size(197, 23);
+            this.labelHiddenWeight.TabIndex = 22;
+            this.labelHiddenWeight.Text = "Желаемый вес(т)\r\n";
+            this.labelHiddenWeight.Visible = false;
+            // 
+            // labelHiddenTime
+            // 
+            this.labelHiddenTime.Font = new System.Drawing.Font("JetBrains Mono Medium", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelHiddenTime.Location = new System.Drawing.Point(242, 391);
+            this.labelHiddenTime.Name = "labelHiddenTime";
+            this.labelHiddenTime.Size = new System.Drawing.Size(159, 23);
+            this.labelHiddenTime.TabIndex = 24;
+            this.labelHiddenTime.Text = " Срок(век)\r\n\r\n";
+            this.labelHiddenTime.Visible = false;
+            // 
+            // textBoxHiddenTime
+            // 
+            this.textBoxHiddenTime.Location = new System.Drawing.Point(242, 417);
+            this.textBoxHiddenTime.Name = "textBoxHiddenTime";
+            this.textBoxHiddenTime.Size = new System.Drawing.Size(159, 22);
+            this.textBoxHiddenTime.TabIndex = 23;
+            this.textBoxHiddenTime.Visible = false;
+            this.textBoxHiddenTime.TextChanged += new System.EventHandler(this.HiddenInputsChanged);
+            this.textBoxHiddenTime.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNumbersOnly_KeyPress);
+            // 
+            // label8
+            // 
+            this.label8.Font = new System.Drawing.Font("JetBrains Mono Medium", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.Location = new System.Drawing.Point(493, 80);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(208, 30);
+            this.label8.TabIndex = 26;
+            this.label8.Text = "Ваш диагноз";
+            // 
+            // label9
+            // 
+            this.label9.Font = new System.Drawing.Font("JetBrains Mono Medium", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Location = new System.Drawing.Point(450, 334);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(272, 23);
+            this.label9.TabIndex = 28;
+            this.label9.Text = "Суточная норма(КлКал)";
+            // 
+            // textBoxNorma
+            // 
+            this.textBoxNorma.Location = new System.Drawing.Point(493, 360);
+            this.textBoxNorma.Multiline = true;
+            this.textBoxNorma.Name = "textBoxNorma";
+            this.textBoxNorma.ReadOnly = true;
+            this.textBoxNorma.Size = new System.Drawing.Size(160, 68);
+            this.textBoxNorma.TabIndex = 27;
+            // 
+            // comboBoxStyles
+            // 
+            this.comboBoxStyles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxStyles.FormattingEnabled = true;
+            this.comboBoxStyles.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.comboBoxStyles.Items.AddRange(new object[] { "Мужской ", "Женский", "Вертолёт" });
+            this.comboBoxStyles.Location = new System.Drawing.Point(38, 219);
+            this.comboBoxStyles.Name = "comboBoxStyles";
+            this.comboBoxStyles.Size = new System.Drawing.Size(187, 24);
+            this.comboBoxStyles.TabIndex = 29;
+            this.comboBoxStyles.SelectedIndexChanged += new System.EventHandler(this.UsersInputsChanged);
+            this.comboBoxStyles.SelectionChangeCommitted += new System.EventHandler(this.UsersInputsChanged);
+            // 
+            // textBoxDiagnoz
+            // 
+            this.textBoxDiagnoz.Location = new System.Drawing.Point(493, 139);
+            this.textBoxDiagnoz.Multiline = true;
+            this.textBoxDiagnoz.Name = "textBoxDiagnoz";
+            this.textBoxDiagnoz.ReadOnly = true;
+            this.textBoxDiagnoz.Size = new System.Drawing.Size(160, 68);
+            this.textBoxDiagnoz.TabIndex = 30;
+            // 
+            // comboBoxTargets
+            // 
+            this.comboBoxTargets.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxTargets.FormattingEnabled = true;
+            this.comboBoxTargets.Items.AddRange(new object[] { "Поддержание веса", "Увеличение веса", "Уменьшение веса" });
+            this.comboBoxTargets.Location = new System.Drawing.Point(38, 392);
+            this.comboBoxTargets.Name = "comboBoxTargets";
+            this.comboBoxTargets.Size = new System.Drawing.Size(187, 24);
+            this.comboBoxTargets.TabIndex = 31;
+            this.comboBoxTargets.SelectedIndexChanged += new System.EventHandler(this.comboBoxTargets_SelectionChangeCommitted);
+            this.comboBoxTargets.SelectionChangeCommitted += new System.EventHandler(this.comboBoxTargets_SelectionChangeCommitted);
             // 
             // CalculatorForm
             // 
@@ -194,22 +229,25 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Pink;
-            this.ClientSize = new System.Drawing.Size(710, 451);
-            this.Controls.Add(this.buttonClear);
-            this.Controls.Add(this.buttonSave);
-            this.Controls.Add(this.buttonEquals);
+            this.ClientSize = new System.Drawing.Size(710, 501);
+            this.Controls.Add(this.comboBoxTargets);
+            this.Controls.Add(this.textBoxDiagnoz);
+            this.Controls.Add(this.comboBoxStyles);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.textBoxNorma);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.labelHiddenTime);
+            this.Controls.Add(this.textBoxHiddenTime);
+            this.Controls.Add(this.labelHiddenWeight);
+            this.Controls.Add(this.textBoxHiddenWeight);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBoxMemory);
-            this.Controls.Add(this.textBoxFirstValue);
-            this.Controls.Add(this.textBoxResult);
-            this.Controls.Add(this.textBoxEquals);
-            this.Controls.Add(this.textBoxOperationSign);
-            this.Controls.Add(this.textBoxSecondValue);
+            this.Controls.Add(this.textBoxWeight);
+            this.Controls.Add(this.textBoxAge);
+            this.Controls.Add(this.textBoxHeight);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Name = "CalculatorForm";
@@ -219,24 +257,48 @@
             this.PerformLayout();
         }
 
-        private System.Windows.Forms.Button buttonClear;
+        private System.Windows.Forms.ComboBox comboBoxStyles;
 
-        private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.TextBox textBoxDiagnoz;
 
-        private System.Windows.Forms.Button buttonEquals;
+        private System.Windows.Forms.TextBox textBoxWeight;
 
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox textBoxAge;
+
+        private System.Windows.Forms.TextBox textBoxHeight;
+
+      
+
+        private System.Windows.Forms.Label labelHiddenWeight;
+
+        private System.Windows.Forms.TextBox textBoxHiddenWeight;
+
+        private System.Windows.Forms.Label labelHiddenTime;
+
+        private System.Windows.Forms.TextBox textBoxHiddenTime;
+
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox textBoxNorma;
+
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textBox3;
+
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBox2;
+
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label4;
+
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox comboBox2;
+
+        private System.Windows.Forms.ComboBox comboBoxTargets;
         private System.Windows.Forms.Label label5;
 
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
 
-        private System.Windows.Forms.TextBox textBoxMemory;
         private System.Windows.Forms.Label label1;
-
-        private System.Windows.Forms.TextBox textBoxEquals;
-        private System.Windows.Forms.TextBox textBoxOperationSign;
 
         private System.Windows.Forms.TextBox textBoxSecondValue;
         private System.Windows.Forms.TextBox textBoxFirstValue;
