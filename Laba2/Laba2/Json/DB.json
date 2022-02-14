@@ -1,0 +1,130 @@
+[
+  {
+    "Format": 3,
+    "Size": 3,
+    "Name": "4",
+    "Udc": "5",
+    "NumberOfPages": 6,
+    "PublishingHouse": {
+      "Name": "5",
+      "Country": "4",
+      "City": "2",
+      "YearOfFoundation": "2022-02-14T11:53:32.5557018+03:00",
+      "OwnershipType": 0
+    },
+    "Year": 2022,
+    "Authors": [
+      {
+        "Name": "1",
+        "Country": "2",
+        "Id": 3
+      },
+      {
+        "Name": "1",
+        "Country": "2",
+        "Id": 34
+      },
+      {
+        "Name": "1",
+        "Country": "2",
+        "Id": 345
+      }
+    ]
+  },
+  {
+    "Format": 3,
+    "Size": 3,
+    "Name": "4",
+    "Udc": "5",
+    "NumberOfPages": 6,
+    "PublishingHouse": {
+      "Name": "5",
+      "Country": "4",
+      "City": "2",
+      "YearOfFoundation": "2022-02-14T11:53:32.5557018+03:00",
+      "OwnershipType": 0
+    },
+    "Year": 2022,
+    "Authors": [
+      {
+        "Name": "1",
+        "Country": "2",
+        "Id": 3
+      },
+      {
+        "Name": "1",
+        "Country": "2",
+        "Id": 34
+      },
+      {
+        "Name": "1",
+        "Country": "2",
+        "Id": 345
+      }
+    ]
+  },
+  {
+    "Format": 3,
+    "Size": 3,
+    "Name": "4",
+    "Udc": "5",
+    "NumberOfPages": 6,
+    "PublishingHouse": {
+      "Name": "5",
+      "Country": "4",
+      "City": "2",
+      "YearOfFoundation": "2022-02-14T11:53:32.5557018+03:00",
+      "OwnershipType": 0
+    },
+    "Year": 2022,
+    "Authors": [
+      {
+        "Name": "1",
+        "Country": "2",
+        "Id": 3
+      },
+      {
+        "Name": "1",
+        "Country": "2",
+        "Id": 34
+      },
+      {
+        "Name": "1",
+        "Country": "2",
+        "Id": 345
+      }
+    ]
+  },
+  {
+    "Format": 3,
+    "Size": 3,
+    "Name": "4",
+    "Udc": "5",
+    "NumberOfPages": 6,
+    "PublishingHouse": {
+      "Name": "5",
+      "Country": "4",
+      "City": "2",
+      "YearOfFoundation": "2022-02-14T11:53:32.5557018+03:00",
+      "OwnershipType": 0
+    },
+    "Year": 2022,
+    "Authors": [
+      {
+        "Name": "1",
+        "Country": "2",
+        "Id": 3
+      },
+      {
+        "Name": "1",
+        "Country": "2",
+        "Id": 34
+      },
+      {
+        "Name": "1",
+        "Country": "2",
+        "Id": 345
+      }
+    ]
+  }
+]
