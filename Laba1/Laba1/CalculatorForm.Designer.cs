@@ -82,7 +82,7 @@
             this.label1.Font = new System.Drawing.Font("JetBrains Mono Medium", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(38, 113);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(206, 23);
+            this.label1.Size = new System.Drawing.Size(232, 23);
             this.label1.TabIndex = 9;
             this.label1.Text = "Введите рост (км)";
             // 
