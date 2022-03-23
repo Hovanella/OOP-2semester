@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Laba2.AbstractFactory;
 using Laba2.BookFile;
-using Laba2.Builder;
+using Laba2.Json;
 using Laba2.Prototype;
 using Laba2.Singleton;
-using Newtonsoft.Json;
 
 namespace Laba2
 {
@@ -20,6 +17,7 @@ namespace Laba2
         private readonly AuthorsForm _authorsForm = new AuthorsForm();
         private readonly PublishingHouseForm _publishingHouseForm = new PublishingHouseForm();
         private readonly SearchForm _searchForm = new SearchForm();
+        private readonly MementoForm _mementoForm = new MementoForm();
         private IBookFileFactory _bookFileFactory;
 
         public Form1()
@@ -27,13 +25,14 @@ namespace Laba2
             InitializeComponent();
             var prototype = new ConcretePrototype(10, "Pivo");
             var clone = prototype.Clone() as ConcretePrototype;
-            MessageBox.Show((prototype.Name==clone.Name && prototype.Id == clone.Id).ToString() );
-            this.BackColor = Config.Instance.Color;
+            MessageBox.Show((prototype.Name == clone.Name && prototype.Id == clone.Id).ToString());
+            BackColor = Config.Instance.Color;
             _publishingHouseForm.Hide();
             _authorsForm.Hide();
             _searchForm.Hide();
+            _mementoForm.Hide();
         }
-        
+
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
@@ -157,25 +156,14 @@ namespace Laba2
 
         private void buttonLoadFromFile_Click(object sender, EventArgs e)
         {
-            List<BookFile.BookFile> bookFilesList;
-
-            using (var reader = new StreamReader(@"../../Json/DB.json"))
-            {
-                bookFilesList = JsonConvert.DeserializeObject<List<BookFile.BookFile>>(reader.ReadToEnd());
-            }
-
-            foreach (var bookFile in bookFilesList) listBoxBase.Items.Add(bookFile);
+            var jsonBaseFacade = new JsonBookFileBaseFacade(@"../../Json(With Facade Pattern)/DB.json", listBoxBase);
+            jsonBaseFacade.LoadFromFile();
         }
 
         private void buttonSaveInFile_Click(object sender, EventArgs e)
         {
-            var BookFilesList = (from object item in listBoxBase.Items select item as BookFile.BookFile).ToList();
-
-            using (var reader = new StreamWriter(@"../../Json/DB.json"))
-            {
-                string jsonString = JsonConvert.SerializeObject(BookFilesList);
-                reader.Write(jsonString);
-            }
+            var jsonBaseFacade = new JsonBookFileBaseFacade(@"../../Json(With Facade Pattern)/DB.json", listBoxBase);
+            jsonBaseFacade.SaveInFile();
         }
 
         private void поискToolStripMenuItem_Click(object sender, EventArgs e)
@@ -216,5 +204,10 @@ namespace Laba2
         }
 
         #endregion
+
+        private void buttonMemento_Click(object sender, EventArgs e)
+        {
+            _mementoForm.Show();
+        }
     }
 }

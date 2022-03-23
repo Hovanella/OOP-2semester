@@ -27,7 +27,7 @@ namespace Laba2.BookFile
         [StringLength(50, MinimumLength=3 , ErrorMessage = "Длина названия от 3 до 50")]
         public string Name { get; set; }
         [Required]
-        [UDC]
+        [Udc]
         public string Udc { get; set; }
         [Required]
         [Range(1, 1000 , ErrorMessage = "Значение числа страниц от 1 до 1000 ") ]
