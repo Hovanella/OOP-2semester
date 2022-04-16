@@ -8,4 +8,23 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Products\Animals\AnimalFotos\external-content.duckduckgo.com.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Products\Animals\AnimalFotos\external-content.duckduckgo.com.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Komon.Presentation.Core" Version="1.0.1.38" />
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    <PackageReference Include="PresentationFramework" Version="4.6.0" />
+    <PackageReference Include="PresentationFramework.Aero2" Version="1.0.1" />
+  </ItemGroup>
+
 </Project>
