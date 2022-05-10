@@ -3,10 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Laba6_7"
-            xmlns:system="clr-namespace:System;assembly=System.Runtime"
+        xmlns:system="clr-namespace:System;assembly=System.Runtime"
         xmlns:lab67="clr-namespace:Lab_6_7"
-        mc:Ignorable="d" Height="381" Width="490">
+        xmlns:wpfCustomControlLibrary="clr-namespace:WpfCustomControlLibrary;assembly=WpfCustomControlLibrary"
+        xmlns:wpfControlLibrary1="clr-namespace:WpfControlLibrary1;assembly=WpfControlLibrary1"
+        xmlns:wpfControlLibrary2="clr-namespace:WpfControlLibrary2;assembly=WpfControlLibrary2"
+        mc:Ignorable="d" Height="681" Width="890">
 
     <Window.CommandBindings>
         <CommandBinding Command="lab67:CustomCommand.SaveCommand" Executed="SaveButton_Click"></CommandBinding>
@@ -15,6 +17,8 @@
         <CommandBinding Command="lab67:CustomCommand.AddCommand" Executed="AddButton_Click"></CommandBinding>
         <CommandBinding Command="lab67:CustomCommand.UpdateCommand" Executed="UpdateButton_Click"></CommandBinding>
         <CommandBinding Command="lab67:CustomCommand.SearchCommand" Executed="SearchButton_Click"></CommandBinding>
+        <CommandBinding Command="lab67:CustomCommand.UndoCommand" Executed="UndoButton_Click"></CommandBinding>
+        <CommandBinding Command="lab67:CustomCommand.RedoCommand" Executed="RedoButton_Click"></CommandBinding>
 
 
     </Window.CommandBindings>
@@ -112,7 +116,8 @@
                             </Grid.ColumnDefinitions>
 
 
-                            <Button x:Name="SearchButton" Grid.Column="1"  Command="lab67:CustomCommand.SearchCommand" Content="{DynamicResource Search}"
+                            <Button x:Name="SearchButton" Grid.Column="1" Command="lab67:CustomCommand.SearchCommand"
+                                    Content="{DynamicResource Search}"
                                     FontSize="30px"
                                     Width="200px"
 
@@ -168,7 +173,8 @@
                                     VerticalAlignment="Center" VerticalContentAlignment="Center"
 
                                     FontSize="25"
-                                    Content="{DynamicResource AnimalType}" />
+                                    Content="{DynamicResource AnimalType}"
+                                    Style="{StaticResource RadioButtonDataEvent}" />
 
                             </Grid>
 
@@ -227,7 +233,7 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="801*" />
-                        <ColumnDefinition Width="269*" />
+                        <ColumnDefinition Width="309*" />
                     </Grid.ColumnDefinitions>
 
 
@@ -288,7 +294,7 @@
                         <Grid Grid.Row="0">
                             <StackPanel Grid.Row="0"
                                         Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Stretch"
-                                        MinWidth="250" MinHeight="300">
+                                        MinWidth="50" MinHeight="300">
 
                                 <TextBlock FontSize="20" Text="{DynamicResource Name}" />
                                 <TextBox x:Name="NameTextBox" Text="" />
@@ -329,13 +335,32 @@
                                 <RowDefinition Height="5*" />
                             </Grid.RowDefinitions>
 
-                            <Button x:Name="AddButton" Command="lab67:CustomCommand.AddCommand" Grid.Row="0" Content="{DynamicResource Add}"></Button>
-                            <Button x:Name="ChangeButton" Content="{DynamicResource Change}" Grid.Row="2" Command="lab67:CustomCommand.UpdateCommand"></Button>
-                            <Button x:Name="DeleteButton" Grid.Row="4" Content="{DynamicResource Delete}" Command="lab67:CustomCommand.DeleteCommand"></Button>
+                            <Button x:Name="AddButton" Command="lab67:CustomCommand.AddCommand" Grid.Row="0"
+                                    Content="{DynamicResource Add}">
+                            </Button>
+                            <Button x:Name="ChangeButton" Content="{DynamicResource Change}" Grid.Row="2"
+                                    Command="lab67:CustomCommand.UpdateCommand">
+                            </Button>
+                            <Button x:Name="DeleteButton" Grid.Row="4" Content="{DynamicResource Delete}"
+                                    Command="lab67:CustomCommand.DeleteCommand">
+                            </Button>
 
                             <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="6">
-                                <Button x:Name="LoadButton" Command="lab67:CustomCommand.LoadCommand" Width="130" Content="{DynamicResource Load }"></Button>
-                                <Button x:Name="SaveButton" Command="lab67:CustomCommand.SaveCommand" Width="130px" Content="{DynamicResource Save}"></Button>
+                                <Button x:Name="LoadButton" Command="lab67:CustomCommand.LoadCommand" 
+                                        Content="{DynamicResource Load }">
+                                </Button>
+                                <Button x:Name="SaveButton" Command="lab67:CustomCommand.SaveCommand" 
+                                        Content="{DynamicResource Save}">
+                                </Button>
+
+                                <Button x:Name="UndoButton"  Command="lab67:CustomCommand.UndoCommand"
+                                        Content="{DynamicResource Undo}">
+                                </Button>
+
+                                <Button x:Name="RedoButton" Command="lab67:CustomCommand.RedoCommand" 
+                                        Content="{DynamicResource Redo}">
+                                </Button>
+
                             </DockPanel>
                         </Grid>
 
@@ -349,13 +374,88 @@
 
         <TabItem Header="{DynamicResource Garbage}">
 
-            <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="6">
-                <Button Style="{StaticResource Yellow}" x:Name="RussianButton" Click="LanguageButton_Click" Content="Русский"></Button>
-                <Button Style="{StaticResource Yellow}" x:Name="EnglishButton" Click="LanguageButton_Click" Content="English"></Button>
-            </DockPanel>
+            <Grid Style="{DynamicResource WindowStyle}">
+                <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="6">
+                    <Button Style="{StaticResource Yellow}" x:Name="RussianButton" Click="LanguageButton_Click"
+                            Content="Русский">
+                    </Button>
+                    <Button Style="{StaticResource Yellow}" x:Name="EnglishButton" Click="LanguageButton_Click"
+                            Content="English">
+                    </Button>
+                    <Button Style="{StaticResource EventTriggerStyle}" x:Name="EventTriggerButton"
+                            Content="EventTrigger">
+                    </Button>
+
+                    <Button x:Name="ThemeButton" Content="DarkThemeButton" Click="ThemeButton_Click"></Button>
+
+                    <wpfCustomControlLibrary:Calculator>
+                    </wpfCustomControlLibrary:Calculator>
+
+
+                </DockPanel>
+            </Grid>
+        </TabItem>
+
+        <TabItem Header="{DynamicResource Garbage2}">
+
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Margin ="50 80 50 50"  >
+                <Button Click="cmdGet_Click" >Get Color</Button>
+                <Button Click="cmdSet_Click">Reset Color</Button>
+                <Button  Command="Undo" CommandTarget="{Binding ElementName=colorPicker}"  >Undo</Button>
+                <TextBlock Background ="Aqua"  Name="lblColor" Margin="50 0 0 50"></TextBlock>
+            </StackPanel>
+
+                <wpfControlLibrary1:ColorPickerUserControl Grid.Row="0" ColorChanged="colorPicker_ColorChanged" Name ="colorPicker" Color="Yellow"></wpfControlLibrary1:ColorPickerUserControl>
+
+
+           
+            
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" VerticalAlignment="Center" PreviewMouseDown="Control2_MouseDown">
+                    <Button x:Name="button2" Width="80" Height="50" PreviewMouseDown="Control2_MouseDown" Margin="10" >
+                        <Ellipse Width="30" Height="30" Fill="Red" PreviewMouseDown="Control2_MouseDown" />
+                    </Button>
+                </StackPanel>
+                <TextBlock Background="Aquamarine" Height="auto" x:Name="textBlock2" Grid.Column="1" Padding="10" />
+            </Grid>
+            
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" VerticalAlignment="Center" MouseDown="Control3_MouseDown">
+                    <Button x:Name="button3" Width="80" Height="50" MouseDown="Control3_MouseDown" Margin="10" >
+                        <Ellipse Width="30" Height="30" Fill="Red" MouseDown="Control3_MouseDown" />
+                    </Button>
+                </StackPanel>
+                <TextBlock x:Name="textBlock3" Height="auto" Background="Bisque" Grid.Column="1" Padding="10" />
+            </Grid>
+            
+            
+            
+            </Grid>
+            
+          
 
 
         </TabItem>
+
     </TabControl>
 
 

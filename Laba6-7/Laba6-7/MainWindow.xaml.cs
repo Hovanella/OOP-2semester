@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Laba6_7.Products;
+using Microsoft.Win32;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -6,10 +9,8 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using Laba6_7.Products;
-using Microsoft.Win32;
-using Newtonsoft.Json;
 
 namespace Laba6_7
 {
@@ -18,7 +19,10 @@ namespace Laba6_7
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly ObservableCollection<Product> items;
+        private ObservableCollection<Product> items;
+
+        private readonly List<ObservableCollection<Product>> _mementos = new();
+        private int cursor = 0;
 
         public MainWindow()
         {
@@ -44,7 +48,8 @@ namespace Laba6_7
             ProductsDataGrid.ItemsSource = items;
             ShopDataGrid.ItemsSource = items;
 
-            //bind CustomCommand to button
+            _mementos.Add(new ObservableCollection<Product>(items));
+
         }
 
         private void CostSlider_OnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -60,7 +65,8 @@ namespace Laba6_7
         private void OpenExplorerButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+            openFileDialog.Filter =
+                "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
             if (openFileDialog.ShowDialog() == true)
             {
                 //set img url to img
@@ -78,6 +84,9 @@ namespace Laba6_7
             {
                 items.Add(serailizedItem);
             }
+
+            _mementos.Add(new ObservableCollection<Product>(items));
+            cursor++;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -87,6 +96,7 @@ namespace Laba6_7
             using var sw = new StreamWriter(@"../../../Files/Products.json");
             string jsonString = JsonConvert.SerializeObject(items);
             sw.Write(jsonString);
+
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
@@ -96,6 +106,9 @@ namespace Laba6_7
             {
                 items.Remove(selectedItem as Product);
             }
+
+            _mementos.Add(new ObservableCollection<Product>(items));
+            cursor++;
         }
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
@@ -115,10 +128,15 @@ namespace Laba6_7
 
             string fotoUrl = AnimalImage.Source != null ? AnimalImage.Source.ToString() : "";
 
-            var ChangedProduct = new Product(NameTextBox.Text, type, fotoUrl, RedactorDescriptionTextBox.Text, (int)RedactorCostSlider.Value);
+            var ChangedProduct = new Product(NameTextBox.Text, type, fotoUrl, RedactorDescriptionTextBox.Text,
+                (int)RedactorCostSlider.Value);
 
             items.RemoveAt(itemNumberInCollection);
             items.Insert(itemNumberInCollection, ChangedProduct);
+
+
+            _mementos.Add(new ObservableCollection<Product>(items));
+            cursor++;
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -133,9 +151,14 @@ namespace Laba6_7
 
             string fotoUrl = AnimalImage.Source != null ? AnimalImage.Source.ToString() : "";
 
-            var newProduct = new Product(NameTextBox.Text, type, fotoUrl, RedactorDescriptionTextBox.Text, (int)RedactorCostSlider.Value);
+            var newProduct = new Product(NameTextBox.Text, type, fotoUrl, RedactorDescriptionTextBox.Text,
+                (int)RedactorCostSlider.Value);
 
             items.Add(newProduct);
+
+
+            _mementos.Add(new ObservableCollection<Product>(items));
+            cursor++;
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
@@ -149,7 +172,8 @@ namespace Laba6_7
 
             var description = ShopDescriptionTextBox.Text;
 
-            var filteredItems = items.Where(x => x.Cost <= searchingCost && x.AnimalType == animalType && x.Description.Contains(description));
+            var filteredItems = items.Where(x =>
+                x.Cost <= searchingCost && x.AnimalType == animalType && x.Description.Contains(description));
 
             ShopDataGrid.ItemsSource = filteredItems;
         }
@@ -171,9 +195,11 @@ namespace Laba6_7
 
             var newLanguageResource = new ResourceDictionary() { Source = sourceUri };
 
-            var englishLanguageResource = Application.Current.Resources.MergedDictionaries.FirstOrDefault(x => x.Source == new Uri("Resources/Languages/English.xaml", UriKind.Relative));
+            var englishLanguageResource = Application.Current.Resources.MergedDictionaries.FirstOrDefault(x =>
+                x.Source == new Uri("Resources/Languages/English.xaml", UriKind.Relative));
 
-            var russianLanguageResource = Application.Current.Resources.MergedDictionaries.FirstOrDefault(x => x.Source == new Uri("Resources/Languages/Russian.xaml", UriKind.Relative));
+            var russianLanguageResource = Application.Current.Resources.MergedDictionaries.FirstOrDefault(x =>
+                x.Source == new Uri("Resources/Languages/Russian.xaml", UriKind.Relative));
 
             if (englishLanguageResource != null)
             {
@@ -181,10 +207,99 @@ namespace Laba6_7
             }
             else
             {
-                if (russianLanguageResource != null) Application.Current.Resources.MergedDictionaries.Remove(russianLanguageResource);
+                if (russianLanguageResource != null)
+                    Application.Current.Resources.MergedDictionaries.Remove(russianLanguageResource);
             }
 
             Application.Current.Resources.MergedDictionaries.Add(newLanguageResource);
+        }
+
+        private void ThemeButton_Click(object sender, RoutedEventArgs e)
+        {
+            var themeButton = (sender as Button);
+
+            if (themeButton.Content.ToString() == "DarkThemeButton")
+            {
+                themeButton.Content = "LightThemeButton";
+
+                var lightThemeResource = new ResourceDictionary()
+                { Source = new Uri("Resources/Style/Themes/LightTheme.xaml", UriKind.Relative) };
+
+                var oldTheme = Application.Current.Resources.MergedDictionaries.FirstOrDefault(x =>
+                    x.Source == new Uri("Resources/Style/Themes/DarkTheme.xaml", UriKind.Relative));
+                Application.Current.Resources.MergedDictionaries.Remove(oldTheme);
+
+
+                Application.Current.Resources.MergedDictionaries.Add(lightThemeResource);
+            }
+            else
+            {
+                themeButton.Content = "DarkThemeButton";
+
+                var darkThemeResource = new ResourceDictionary()
+                { Source = new Uri("Resources/Style/Themes/DarkTheme.xaml", UriKind.Relative) };
+
+                //delete old theme
+                var oldTheme = Application.Current.Resources.MergedDictionaries.FirstOrDefault(x =>
+                    x.Source == new Uri("Resources/Style/Themes/LightTheme.xaml", UriKind.Relative));
+                Application.Current.Resources.MergedDictionaries.Remove(oldTheme);
+
+                Application.Current.Resources.MergedDictionaries.Add(darkThemeResource);
+            }
+        }
+
+        private void cmdGet_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(colorPicker.Color.ToString());
+        }
+
+        private void cmdSet_Click(object sender, RoutedEventArgs e)
+        {
+            colorPicker.Color = Colors.Beige;
+        }
+
+        private void colorPicker_ColorChanged(object sender, RoutedPropertyChangedEventArgs<Color> e)
+        {
+            if (lblColor != null)
+            {
+                lblColor.Text = "The new color is " + e.NewValue.ToString();
+            }
+        }
+
+        private void UndoButton_Click(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (cursor == 0) return;
+
+
+            cursor--;
+            items = new ObservableCollection<Product>(_mementos[cursor]);
+            ProductsDataGrid.ItemsSource = items;
+        }
+
+
+        private void RedoButton_Click(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (cursor == _mementos.Count - 1) return;
+
+            cursor++;
+            items = new ObservableCollection<Product>(_mementos[cursor]);
+            ProductsDataGrid.ItemsSource = items;
+        }
+
+
+
+        private void Control2_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            textBlock2.Text = textBlock2.Text + "sender: " + sender.ToString() + " ";
+            textBlock2.Text = textBlock2.Text + "source: " + e.Source.ToString() + " ";
+            textBlock2.Text += "\n";
+        }
+
+        private void Control3_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            textBlock3.Text = textBlock3.Text + "sender: " + sender.ToString() + " ";
+            textBlock3.Text = textBlock3.Text + "source: " + e.Source.ToString() + " ";        
+            textBlock3.Text += "\n";
         }
     }
 }

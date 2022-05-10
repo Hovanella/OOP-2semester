@@ -21,7 +21,9 @@
     <system:String x:Key="Load">Загрузить</system:String>
     <system:String x:Key="Save">Сохранить</system:String>
     <system:String x:Key="Garbage">Мусор</system:String>
-    
-    
-    
+    <system:String x:Key="Garbage2">Мусор2</system:String>
+    <system:String x:Key="Undo">До</system:String>
+    <system:String x:Key="Redo">После</system:String>
+
+
 </ResourceDictionary>

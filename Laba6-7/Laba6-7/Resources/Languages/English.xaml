@@ -21,5 +21,8 @@
     <system:String x:Key="Load">Load</system:String>
     <system:String x:Key="Save">Save</system:String>
     <system:String x:Key="Garbage">Garbage</system:String>
+    <system:String x:Key="Garbage2">Garbage2</system:String>
+    <system:String x:Key="Undo">Undo</system:String>
+    <system:String x:Key="Redo">Redo</system:String>
 
 </ResourceDictionary>
